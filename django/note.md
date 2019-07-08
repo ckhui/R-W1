@@ -67,3 +67,45 @@ to do the migration for model
 - need to include the app in INSTALLED_APPS list
 - then only db will be created base on the defined model 
 >> python manage.py makemigrations polls
+
+>> python manage.py check
+- check for any problems wihtout making migration or touching the database
+
+>> python manage.py migrate
+- to create those model in db
+- takes all migrations that haven't been applied
+
+## Make Model Change
+- change model (model.py)
+- python manage.py makemigrations
+- python manage.py migarate
+
+## Shell
+> python manage.py shell
+- read and manipulate DB 
+
+```
+>>> from polls.models import Choice, Question
+get all question
+>>> Question.objects.all()
+
+create new instance
+>>> from django.utils import timezone
+>>> q = Question(question_text="What's new?", pub_date=timezone.now())
+
+have to call save() explicitly to make change to DB
+>>> q.save()
+
+# Access model field values via Python attributes.
+>>> q.question_text
+
+# Change values by changing the attributes, then calling save().
+>>> q.question_text = "What's up?"
+>>> q.save()
+
+>>> Question.objects.all()
+```
+
+
+Object: <Question: Question object (1)> will not be helpful with id 1
+try to modify it by defind __str__(self) in model
