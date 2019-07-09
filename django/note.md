@@ -131,3 +131,26 @@ register model in admin.py
 
 ## Add More View
 - add view to views.py
+## config the url
+- add view to urls.py
+
+## Custome View and present Templates
+- create a folder "templates" in the app dir
+- change setting to look for "templates" folder within app
+- (setting.py) 'TEMPLATES': 'APP_DIRS': True ## set to True
+- File: polls/templates/polls/index.html
+- File: APP  /templates/(path to be refer)
+- eg: polls/index.html
+- ensure namespaing to avoid filename conflict, eg: lots of index.html
+### Use Template
+- create template folder and file
+- configure the setting to look for template folder
+- view, get template, get context, present
+    - from django.template import loader
+    - template = loader.get_template(path)
+    - context = {dict})
+    - return HttpResponse(template.render(context, request))
+
+- [shortcut]: render()
+    - from django.shortcuts import render
+    - return render(request, 'polls/index.html', context)
