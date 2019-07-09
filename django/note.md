@@ -1,5 +1,6 @@
 # Django
 
+# PART1
 ## New Project
 >> django-admin startproject mysite
 
@@ -41,6 +42,7 @@ add the urls.py above to mysite/urls
     4. name: Naming the URL, in order to refer (esp from within templates) 
 
 
+# PART2
 ## Database
 configure in setting.py 
 - DATABASES
@@ -90,7 +92,6 @@ get all question
 >>> Question.objects.all()
 
 create new instance
->>> from django.utils import timezone
 >>> q = Question(question_text="What's new?", pub_date=timezone.now())
 
 have to call save() explicitly to make change to DB
@@ -105,7 +106,28 @@ have to call save() explicitly to make change to DB
 
 >>> Question.objects.all()
 ```
+- filter
+- all, count
+- get by pk
+- create, delete
+- accessing related objects
+- double underscores for field lookup
 
 
 Object: <Question: Question object (1)> will not be helpful with id 1
 try to modify it by defind __str__(self) in model
+- not only convenience when dealing with the interactive prompt
+- also object's representations are used for admin
+
+
+## Admin User
+create admin user
+> python manage.py createsuperuser
+
+## Make Poll App Modifiable in the admin
+register model in admin.py
+
+# PART3
+
+## Add More View
+- add view to views.py
