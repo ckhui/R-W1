@@ -24,3 +24,24 @@
 - (Avoiding race conditions using F())[https://docs.djangoproject.com/en/2.2/ref/models/expressions/#avoiding-race-conditions-using-f]
 - instead of doing read and update to DB
 - ask the database to do the update
+
+
+## Use Generic Views
+### Amend URLconf
+- change **<question_id>** to **<pk>**
+
+### Amend View
+- from django.views import generic
+- ListView and DetailView
+- each generic view need to know
+    - model
+        - set the "model" variable
+    - DetailView: expects primary key value capture by the url to be **"pk"**
+        - thats why chaning the url.py to use "pk"
+    - template
+        - default: <appName>/<modelNamr>_detail.html
+        - can set the "template_name" variable
+    - context
+        - default context will be "question_list"
+        - but our template is build for "latest_question_list"
+        - can change it by setting "context_object_name"
