@@ -154,3 +154,30 @@ register model in admin.py
 - [shortcut]: render()
     - from django.shortcuts import render
     - return render(request, 'polls/index.html', context)
+
+
+## 404 Page
+- from django.http import Http404
+- raise Http404("Question does not exist")
+or shortcut
+- from django.shortcuts import get_object_or_404
+- will automatically riase Http404 if no object found
+- similar: get_list_or_404()
+    - use filter() instead of get() for model
+    - raise 404 if list is empty
+
+## Removing Hardcoded URLs in templates
+``` html
+<li><a href="{% url 'detail' question.id %}">{{ question.question_text }}</a></li>
+```
+- using {% url 'name defines in urls' param%}
+- can just change the url pattern in urls.py and not affecting all the href
+
+
+## Application Namespace
+- to differentiate the URL names between differnce app
+- to let Django know whcih app's url to use when using {% url %} tag
+- add app_name to urls.py
+- including namespace in {% url %} tag
+    - "{% url 'detail' question.id %}"
+    - "{% url 'polls:detail' question.id %}"
