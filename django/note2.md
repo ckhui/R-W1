@@ -58,3 +58,28 @@
 
 ## Create test
 - add to tests.py
+- run test
+> python manage.py test polls
+
+## Test View
+- Django provides a test **Client** to simulate a user interaction with the code at the view level
+- can use in **tests.py** or **shell**
+
+> from django.test.utils import setup_test_environment
+> setup_test_environment()
+    - installs a template renderer
+    - allow to examine some additional attributes
+        - response.contest
+    - does not setup a test DB
+    - everything will be run against the existing DB
+
+> from django.test import Client
+> client = Client()
+- client to do sth 
+> response = client.get('/')
+
+### Comparision 
+ assertContains()
+ - self.assertContains(response, "No polls are available.")
+ assertQuerysetEqual()
+ - self.assertQuerysetEqual(response.context['latest_question_list'],  ['<Question: Past question 2.>', '<Question: Past question 1.>'])
