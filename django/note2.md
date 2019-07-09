@@ -79,7 +79,37 @@
 > response = client.get('/')
 
 ### Comparision 
- assertContains()
- - self.assertContains(response, "No polls are available.")
- assertQuerysetEqual()
- - self.assertQuerysetEqual(response.context['latest_question_list'],  ['<Question: Past question 2.>', '<Question: Past question 1.>'])
+ - assertContains()
+ > self.assertContains(response, "No polls are available.")
+ - assertQuerysetEqual()
+ > self.assertQuerysetEqual(response.context['latest_question_list'],  ['<Question: Past question 2.>', '<Question: Past question 1.>'])
+ - 404
+ > self.assertEqual(response.status_code, 404)
+
+
+## rules-of-thumb
+- separate TestClass for each model or view
+- separate test method for each set of conditions you want to test
+- test method names that describe their function
+
+## Further testing
+- test framework "(Selenium)[https://www.seleniumhq.org/]" to test whether HTML actually being rendered
+- testing javascript
+- Django: LiveServerTestCase
+- run tests actumatically for every commit: CI (continuous integration)
+- check code coverage
+- 
+
+
+## Static file
+- some non generated file need to be served together with the HTML
+- eg. images, javascript or css 
+- **django.contrib.staticfiles** will collects all the static files into a single location to be served in production
+- need to create a folder "static" in the app
+- create another "polls" folder inside (for namespacing)
+- structure: polls/static/polls/style.css
+- to use
+ - **{% load static %}** in template file
+ - **{% static %}** tag to get absolute URL of static file
+    - href="{% static 'polls/style.css' %}"
+
