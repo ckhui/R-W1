@@ -45,3 +45,16 @@
         - default context will be "question_list"
         - but our template is build for "latest_question_list"
         - can change it by setting "context_object_name"
+
+## TEST
+- test are simple routines that check the operation of your code
+- Why
+    - save time
+        - when the app becomes conplex
+    - prevent problems
+    - more attractive code
+    - help teams work together
+- TDD, test-driven development
+
+## Create test
+- add to tests.py
