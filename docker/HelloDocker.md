@@ -313,3 +313,165 @@ CMD ["echo", "Hello Wrold"]
 > docker build . 
 > docker build -t tagName .
 > docker run [imageID]
+
+
+## Docker Compose
+STEP:
+1. install dokcer compose
+    - ald install with docker
+    > docker-compose -v
+    - check for installation
+    - check doc for installation
+    - or
+    > pip install -U docker-compose
+2. create docker-compose.yml
+```
+version: '3'
+
+services:
+
+    web[ServiceName]:
+        image: nginx
+        port: 8080:80
+
+    database:
+        image: redis
+```
+3. check the validity of file by command
+> docker-compose config
+
+4. run docker-compose file
+> docker-compose up
+- detech mode
+> docker-compose up -d
+
+5. stop application
+> docker-compose down
+
+### How to scale
+> docker-compose up -d --scale database=4
+- docker-compose up -d --scale [ServiceName]=NumOfService
+ ### Docker Compose
+- tool for defining & running multi-container docker application
+- yml file (docker-composr.yml)
+- start and stop all service in single command
+    - docker compose up
+    - docker compose down
+- can scale up selected services when required
+
+
+## Docker Volumes
+- by default data doesn't persist when the container is killed
+- we can do a **bind mount** a local dir
+- or mount a **volume** to the container
+
+> docket volume create [name]
+> docker volume inspect [name]
+> docker volumn prune 
+
+- attach image to a volumes
+> docker run --name MyJenkins1
+    -v myvol1:/var/jenkins_home
+    -p 8080:8080
+    -p 50000:50000
+    jenkins
+- look at the -v, we mount a vol to the container
+
+
+## Docker Swarm
+- is a group of machines that are running Docker 
+- and joined into a cluster
+
+- one node as manager
+- other as worker
+- Orchestarion
+    - managing and controling multiple docker container as a singel service
+- alternative
+    - kubernates
+    - apache mesos 
+
+
+Step
+0. Install docker-machine
+1. Create docker machines 
+    - act as nodes for Docker Swarm
+    - one machines as Manager
+    - others as Workers
+> docker-machine create --driver virtualbox manager1
+> docker-machine create --driver hyprev manager1
+- repeat the same for workers
+
+2. Check status
+- list all machine
+> docker-machine ls
+- get machine ip
+> docker-machine ip [name]
+
+3. SSH Connection to machine
+> docker-machine ssh[name]
+
+4. Initialize Docker Swarm
+[on Manager Machine]
+- with mamanger ip
+> docker swarm init --adverise-addr 192.168.99.100
+
+- list all the node (manager and worker)
+> docker node ls
+
+5. Join worker to swap
+- copy paste from the manager init
+or get the command by
+> docker swarm join-token worker
+
+- to join as manager
+> docker swarm join-token manager
+
+[Manager Node]
+> docker node ls
+- to verify registration of worker
+
+6. Standard Docker Commands
+> docker info
+- check for Swarm session
+- no of manager, no of nodes
+
+> docker swarm
+- check Command available for swarm
+
+7. Run Container on Docker Swarm
+[Manager Node]
+> docker service create 
+    --replicas 3
+    -p 80:80
+    --name [serviceName]
+    nginx
+> docker service ls
+- can check the running replicas
+> docker server ps [serviceName]
+
+8. Scale up or down
+[Manager Node]
+> docker service scale [serviceName]=[number]
+
+### Inspecting Node
+- only able to run on manager node
+> docker node inspect [nodename]
+> docker node inspect self
+> docker node inspect worker1
+
+9. update service 
+> docker service update --image nginx:1.14.0 web1[serviceName]
+
+10. shutdown node
+> docker node update --availability drain worker1[NodeName]
+
+11. Remove service
+> docker service rm [serviceName]
+
+### Swarm
+[worker node]
+> docker swarm leave
+
+### Machine 
+> docker-machine stop worker1
+> docker-machine rm worker1
