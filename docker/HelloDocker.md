@@ -9,6 +9,8 @@ manager node, worker node
 
 ## Docker
 
+[youtube playlist by RaghavPal](https://www.youtube.com/watch?v=wi-MGFhrad0&list=PLhW3qG5bs-L99pQsZ74f-LC-tOEsBp2rK)
+
 - running some simple container
 - use Dockerfile to build a custom app
 - how to use bind mounts to modify a running container
@@ -282,4 +284,32 @@ Containers is a running instance of image
 
 
 ## Jenkins
+scan throught
 
+
+## Docker file
+- file with instruction to create image
+- automation of Docker image creation
+
+### Step
+- create a file named "Dockerfie" 
+- add instuction in Dokcerfile
+- build dockerfile to create image
+- run image to create container
+
+```docker
+
+FROM [image]
+FROM scratch
+
+# optional
+MAINTAINER name <email>
+
+# cmd to be run
+CMD ["echo", "Hello Wrold"]
+
+```
+- build the image (with tag) in dir that contain Dockerfile
+> docker build . 
+> docker build -t tagName .
+> docker run [imageID]
