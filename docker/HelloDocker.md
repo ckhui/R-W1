@@ -2,7 +2,10 @@ Docker 1, 2, 3
 Basic Concept
 Application
 What, Why, How
-container, node. image
+container, node. image, volumn
+compose
+Swarm
+manager node, worker node
 
 ## Docker
 
@@ -155,3 +158,128 @@ Dockefile
 > docker login
 > docker image push $DOCKERID/linux_tweet_app:1.0
 > docker image push $DOCKERID/linux_tweet_app:2.0
+
+
+
+
+
+## Docker
+- container platform 
+- make sure all the stack work on any platform and hardware
+- like container for shipping industry 
+- docker allow software to ship in the form of container
+- containers consist of all the libraries and dependencies required for software to run
+
+
+Dockerfile 
+- to create docker image
+- docker container = runtime instance of docker image
+- can store in DockerHub
+- pull to any environment and run
+
+Container vs virture machine
+- VM need to run on an OS
+- Container just run on top of some lib/bin
+
+Docker Client vc Docker Server (deamon)
+together form the Docker Engine
+
+Benefit
+- Build app only once
+    - DockerFile
+- easier for deploy
+    - worry less about OS setup
+- protability
+    - pull and run
+- version control
+    - docker hub
+- isolation
+    - not interferes with other application
+- Productivity
+
+## Install in linux
+- OS 64-bit
+- docker manual > docker for linux
+- install docker (yum)
+> docker --version
+> docker info
+start docker
+> sudo service docker start
+
+> docker images
+- list all images
+> docker ps
+- list all running process
+> docker ps -a
+- list all process
+> docker run [image]
+stop docker
+> sudo service docker stop
+uninstall
+> sudo yum uninsatll docker
+
+
+## Commands
+### Basic
+> docker version
+
+> docker -v
+> docker --version
+
+> docker info
+
+> docker --help
+> docker images --help
+
+> docker login
+
+### Images
+> dockers images
+> dockers pull [image]
+> docker rmi [image id]
+
+### Container
+> docker ps
+> docker run [image]
+> docker run -it ubuntu
+
+> docker start [container id]
+> docket stop [contianer id]
+
+### System
+> docker stats
+- check memory usage and CPU ...
+
+> docker sytem df
+- check file size
+
+> docket system prune
+- remove all stopped container
+- remove all dangling images
+- remove all build cache
+
+> docker inspect [image]
+
+
+## Images
+Docker images are templates used to create Docker containers
+
+## Container
+Containers is a running instance of image
+> docker pause [ConatinerName/ID]
+> docker unpause [ConatinerName/ID]
+
+> docker top [ConatinerName/ID]
+> docker stats [ConatinerName/ID]
+
+> docker attach [ConatinerName/ID]
+- go inside the container
+
+> docker kill [ConatinerName/ID]
+> docker rm [ConatinerName/ID]
+
+> docker history [ImageName/ID] 
+
+
+## Jenkins
+

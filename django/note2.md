@@ -113,3 +113,50 @@
  - **{% static %}** tag to get absolute URL of static file
     - href="{% static 'polls/style.css' %}"
 
+## Customize the admin form
+- edit admin.py
+```python
+#[default]
+admin.site.register(Question)
+```
+- change to 
+```python
+class QuestionAdmin(admin.ModelAdmin):
+    fields = ['pub_date', 'question_text']
+
+admin.site.register(Question, QuestionAdmin)
+```
+
+when want to change the admin options for a model
+- create a model admin class
+- pass in as 2nd arg for admin.site.register()
+
+- can use fieldsets
+    - seperate to sessions
+
+### Adding Related Object
+- Question will have mulitple Choice
+
+- Django know that a **ForeignKey** should be represented as a **<select>** box.
+- But now, you can add a Choice when editing Question
+
+- 'classes': ['collapse']
+    - to allow fieldsets to be hide/show
+- admin.StackedInline
+    - stack for input
+- admin.TabularInline
+    - input in table form ( save space)
+
+- list_display
+    - to set what info to display, on index page (before edit)
+    - change the column name and order
+    - make the change in to model
+        - field.admin_order_field = 'pub_date'
+        - field.boolean = True
+        - field.short_description = 'Published recently?'
+- list_filter
+    - add a filter by the field to sidebar
+- search_fields
+    - add a search bar, and will search for the filed
+- paggination, search box, filters, date-horerarchies, column-header-ordering
+    - refer to doc
