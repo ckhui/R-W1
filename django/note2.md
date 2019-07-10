@@ -160,3 +160,10 @@ when want to change the admin options for a model
     - add a search bar, and will search for the filed
 - paggination, search box, filters, date-horerarchies, column-header-ordering
     - refer to doc
+
+
+## Customize the admin look and fell
+### Customizing project's template
+- create a "templates" folder in the base_dir
+- configure the app to look for the folder in setting.py > TEMPLATES > DIRS
+- 'DIRS': [os.path.join(BASE_DIR, 'templates')],
